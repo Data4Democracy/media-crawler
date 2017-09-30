@@ -24,7 +24,7 @@ To start the crawling process, you will need to pass a url to the MediaSpider vi
 First, `cd` into `media-crawler/crawler`, (where the `scrapy.cfg` file is). Then, run this command, passing the spider the URL you want to start with.
 
 ```bash
-scrapy crawl media_spider -a -o media.json media_url="https://www.washingtonpost.com/news/post-politics/wp/2017/09/07/did-facebook-ads-traced-to-a-russian-company-violate-u-s-election-law/?tid=a_inl&utm_term=.e24142917aa8"
+scrapy crawl media_spider -o media.json -a media_url="https://www.washingtonpost.com/news/post-politics/wp/2017/09/07/did-facebook-ads-traced-to-a-russian-company-violate-u-s-election-law/?tid=a_inl&utm_term=.e24142917aa8"
 ```
 
 Here, we use a Washington Post article as the starting point. Feel free to use this as a baseline test.
