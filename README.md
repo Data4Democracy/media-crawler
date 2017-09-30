@@ -21,15 +21,18 @@ At a minimum, you will need `Scrapy` and `BeautifulSoup` for the baseline functi
 
 To start the crawling process, you will need to pass a url to the MediaSpider via the Scrapy CLI.
 
-First, `cd` into `media-crawler/crawler`, (where the `scrapy.cfg` file is). Then, run this command, passing the spider the URL you want to start with:
+First, `cd` into `media-crawler/crawler`, (where the `scrapy.cfg` file is). Then, run this command, passing the spider the URL you want to start with.
+
+In addition to the `media_url` argument, you may pass in a `max_depth` argument specifying how many references deep you want the tree to be constructed. The default is `3`.
+
+Do not forget to output to a JSON data file at the end of the command via `-o media.json`. It is hard to see in the example below without scrolling, as that is not a small URL.
 
 ```bash
-scrapy crawl media_spider -a media_url="https://www.washingtonpost.com/news/post-politics/wp/2017/09/07/did-facebook-ads-traced-to-a-russian-company-violate-u-s-election-law/?tid=a_inl&utm_term=.e24142917aa8" -o media.json
+scrapy crawl media_spider -a media_url="https://www.washingtonpost.com/news/post-politics/wp/2017/09/07/did-facebook-ads-traced-to-a-russian-company-violate-u-s-election-law/?tid=a_inl&utm_term=.e24142917aa8" max_depth=5 -o media.json
 ```
 
-Here, we use a Washington Post article as an example. Feel free to use this as a baseline test.
+Here, we use a Washington Post article as an example and go five references deep with it as the starting point. Feel free to use this as a baseline test.
 
-**Note: At the moment, we do not control the depth to which the spider scrapes. Once you have scraped enough to determine the performance of the crawler, hit `CTRL-C` once (multiple times won't allow the spider to soft stop) to make the crawl stop. You can see the results in `media-crawler/crawler/media.json`, as this is the file specified in the command above.**
 
 ## Contributing
 
