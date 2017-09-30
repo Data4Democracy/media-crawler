@@ -3,3 +3,4 @@
 *.egg-info
 build
 setup.py
+crawler/media.json
