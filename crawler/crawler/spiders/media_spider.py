@@ -17,13 +17,12 @@ class MediaSpider(scrapy.Spider):
     name = 'media_spider'
     parent_node_lookup = {}
 
-    def __init__(self, media_url='', max_depth='3', *args, **kwargs):
+    def __init__(self, media_url='', *args, **kwargs):
         super(MediaSpider, self).__init__(*args, **kwargs)
         assert media_url, '''
         media_spider was not initialized with starting media_url
         '''
         self._media_url = media_url
-        self._max_depth = int(max_depth)
 
     def start_requests(self):
         """Start crawl wih given media url
@@ -54,24 +53,16 @@ class MediaSpider(scrapy.Spider):
         parser = get_parser(response.url)
         # Clean up the url to use as an identifier
         clean_url = response.url.split('?')[0]
-        # Get the depth of the crawl thus far
-        crawl_depth = self.get_node_depth(clean_url)
 
         # If there was a valid parser found...
         if parser:
             # Parse out the references
             references = parser(response)
 
-            # If the max depth hasn't been reached, continue the crawl
-            if crawl_depth <= self._max_depth:
-                # For every reference, delegate a request for it to be scraped as well
-                for ref in references:
-                    # Clean kwargs from ref url
-                    clean_ref_url = ref['href'].split('?')[0]
-                    # Track parent nodes to determine depth
-                    self.parent_node_lookup[clean_ref_url] = clean_url
-                    # Yield a request for Scrapy to process
-                    yield scrapy.Request(ref['href'], self.parse_media_references)
+            # For every reference, delegate a request for it to be scraped as well
+            for ref in references:
+                # Yield a request for Scrapy to process
+                yield scrapy.Request(ref['href'], self.parse_media_references)
 
             # After processing all references, yield the root media item given.
             # Note: this is recursive, technically, so this is the root of the
