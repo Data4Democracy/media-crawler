@@ -17,13 +17,13 @@ class MediaSpider(scrapy.Spider):
     name = 'media_spider'
     parent_node_lookup = {}
 
-    def __init__(self, media_url='', max_depth=3, *args, **kwargs):
+    def __init__(self, media_url='', max_depth='3', *args, **kwargs):
         super(MediaSpider, self).__init__(*args, **kwargs)
         assert media_url, '''
         media_spider was not initialized with starting media_url
         '''
         self._media_url = media_url
-        self._max_depth = max_depth
+        self._max_depth = int(max_depth)
 
     def start_requests(self):
         """Start crawl wih given media url
