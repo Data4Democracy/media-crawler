@@ -30,18 +30,6 @@ class MediaSpider(scrapy.Spider):
         # Yield a request which will be picked up by the spider
         yield scrapy.Request(self._media_url, self.parse_media_references)
 
-    def get_node_depth(self, node_url):
-        """Given the URL of a media node, track its depth in the current crawl
-        """
-        depth = 0
-        parent_node = node_url # At depth zero, start with current node
-        while parent_node is not None:
-            # Inclusive of the first node given, count every parent traversed
-            depth += 1
-            # use .get() to default to None if a parent node can't be found
-            parent_node = self.parent_node_lookup.get(parent_node, None)
-        return depth
-
     def parse_media_references(self, response):
         """Given a response to a scrapy.Request, parse out and delegate all media references
 
