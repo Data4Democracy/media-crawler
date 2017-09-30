@@ -8,7 +8,9 @@
 import scrapy
 
 
-class CrawlerItem(scrapy.Item):
-    # define the fields for your item here like:
-    # name = scrapy.Field()
-    pass
+class MediaItem(scrapy.Item):
+    """Item representing scraped media
+    """
+    url = scrapy.Field()
+    media_type = scrapy.Field() # Article, Tweet, etc.
+    references = scrapy.Field()
