@@ -63,7 +63,7 @@ class MediaSpider(scrapy.Spider):
             references = parser(response)
 
             # If the max depth hasn't been reached, continue the crawl
-            if crawl_depth < self._max_depth:
+            if crawl_depth <= self._max_depth:
                 # For every reference, delegate a request for it to be scraped as well
                 for ref in references:
                     # Clean kwargs from ref url
