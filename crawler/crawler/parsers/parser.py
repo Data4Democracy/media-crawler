@@ -2,7 +2,7 @@ import re
 
 # Import parsers
 from crawler.parsers.washington_post import parse_washington_post_references
-
+from crawler.parsers.fox_news import parse_fox_news_references
 
 # As article links can be a bit nebulous, we want to specify a regex
 # pattern to match against each given url to determine the most
@@ -12,7 +12,8 @@ from crawler.parsers.washington_post import parse_washington_post_references
 #   If you don't import your parser and add it to this map,
 #   it will not be picked up for a relevant url by the spider!
 parser_map = {
-    '.+\.washingtonpost\.com.+': parse_washington_post_references
+    '.+\.washingtonpost\.com.+': parse_washington_post_references,
+    '.+\.foxnews\.com+': parse_fox_news_references
 }
 
 
