@@ -36,6 +36,8 @@ Here, we use a Washington Post article as the starting point. Feel free to use t
 
 For contributing, the typical open-source git-flow applies.
 
+**Before branching off to make any changes, please claim the issue with a comment so you can be assigned to it and others know you are already working on it! :)**
+
 Fork the project, then make a branch off of `master` with a clear and concise name describing your intentions with the branch--something like `handle-old-wapo-format`.
 
 Then, make your changes to the code in that branch in your Fork on your machine (following instructions above to ensure it works and doesn't throw any unexpected errors).
